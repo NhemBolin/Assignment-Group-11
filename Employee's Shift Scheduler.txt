@@ -1,0 +1,401 @@
+package inheritance;
+import java.util.Scanner;
+import javax.swing.text.Position;
+class Employee{
+    protected int code;
+    protected String name;
+    protected String gender;
+    protected String position;
+    protected int s_time;
+    protected int e_time;
+    protected String day;
+
+    public Employee() {
+        code = 0;
+        name = "NULL";
+        gender = "NULL";
+        position = "NULL";
+        s_time = 0;
+        e_time = 0;
+        day = "NULL";
+    }
+    public Employee(int code, String name, String gender, String position, int s_time, int e_time, String day) {
+        this.code = code;
+        this.name = name;
+        this.gender = gender;
+        this.position = position;
+        this.s_time = s_time;
+        this.e_time = e_time;
+        this.day = day;
+    }
+    String getName()
+    {
+        return name;
+    }
+    int getCode()
+    {
+        return code;
+    }
+    public void setCode(int code)
+    {
+        this.code=code;
+    }
+    public void setS_time(int s_time)
+    {
+        this.s_time=s_time;
+    }
+    public void setE_time(int e_time)
+    {
+        this.e_time=e_time;
+    }
+    public void setPosition(String posi)
+    {
+        this.position=posi;
+    }
+    public void setDay(String day)
+    {
+        this.day=day;
+    }
+    public void input()
+    {
+        Scanner sc = new Scanner(System.in);
+        System.err.print("Enter Code       : ");code=sc.nextInt();
+        System.err.print("Enter Name       : ");name=sc.next();
+        System.err.print("Enter Gender     : ");gender=sc.next();
+        System.err.print("Enter Position   : ");position=sc.next();
+        System.err.print("Enter Start Time : ");s_time=sc.nextInt();
+        System.err.print("Enter End Time   : ");e_time=sc.nextInt();
+        System.err.print("Enter Day        : ");day=sc.next();
+    }
+    public String Staff()
+    {
+        if(s_time==7 && e_time==5)
+        {
+            return "EMPLOYEE FULL TIME";
+        }
+        else if(s_time==7 && e_time==11)
+        {
+            return "EMPLOYEE PART TIME";
+        }
+        else if(s_time==11 && e_time==5)
+        {
+            return "EMPLOYEE PART TIME";
+        }
+        else 
+        {
+            return "EMPLOYEE PART TIEM";
+        }
+    }
+        
+    public void ouptut()
+    {
+        System.out.printf("%-12d %-12s %-12s %-12s %-12d %-12d %-12s %-12s\n",code,name,gender,position,s_time,e_time,day,Staff());
+    }
+    public static void Header()
+    {
+        System.out.printf("%-12s %-12s %-12s %-12s %-12s %-12s %-12s %-12s\n","CODE","NAME","GENDER","POSITION","STARTTIME","ENDTIME","DAY","STAFF");
+    }
+    public static void schedule()
+    {
+        System.err.println("\t\t\t=:=:=:=:=:=:=:=:=:SHCEDULE=:=:=:=:=:=:=:=:=:");
+        System.err.println("\t\t\t\t07:00 -> 05:00 AM-PM     MON-FRI");
+        System.err.println("\t\t\t\t07:00 -> 11:00 AM        MON-FRI");
+        System.err.println("\t\t\t\t11:00 -> 05:00 PM        MON-FRI");
+        System.err.println("\t\t\t\t07:00 -> 05:00 AM-PM     SAT-SUN");
+    }
+    public void load()
+    {
+        String Username;
+        String Password;
+
+        Password = "123";
+        Username = "Java";
+
+        Scanner input1 = new Scanner(System.in);
+        System.out.print("\t\t\t\t\tEnter Username : ");
+        String username = input1.next();
+
+        Scanner input2 = new Scanner(System.in);
+        System.out.print("\t\t\t\t\tEnter Password : ");
+        String password = input2.next();
+
+        if (username.equals(Username) && password.equals(Password)) {
+
+            System.out.println("\t\t\t\t\tAccess Granted! Welcome!");
+        }
+
+        else if (username.equals(Username)) {
+            System.out.println("Invalid Password!");
+        } else if (password.equals(Password)) {
+            System.out.println("Invalid Username!");
+        } else {
+            System.out.println("Invalid Username & Password!");
+        }
+    }
+    public void longinbar()
+    {
+        int totalTasks = 100;
+        int currentTask = 0;
+        int progressBarWidth = 50;
+
+        System.out.println("\t\t\t\t\tLoading....");
+
+        StringBuilder progressStringBuilder = new StringBuilder();
+        for (int i = 0; i < progressBarWidth; i++) {
+            progressStringBuilder.append(" ");
+        }
+
+        while (currentTask <= totalTasks) {
+            int progress = (int) (currentTask / (float) totalTasks * progressBarWidth);
+            StringBuffer progressBarBuffer = new StringBuffer(progressBarWidth + 10);
+            progressBarBuffer.append('[');
+            for (int i = 0; i < progressBarWidth; i++) {
+                if (i < progress) {
+                    progressBarBuffer.append('=');
+                } else if (i == progress) {
+                    progressBarBuffer.append('>');
+                } else {
+                    progressBarBuffer.append(' ');
+                }
+            }
+            progressBarBuffer.append("] ").append(progress * 100 / progressBarWidth).append('%');
+            String progressBarWithBuffer = progressBarBuffer.toString();
+
+            System.out.print("\r" + progressBarWithBuffer);
+
+            try {
+                Thread.sleep(50);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            currentTask++;
+        }
+    }
+};
+
+
+public class Inheritance extends Employee{
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Inheritance[] emp = new Inheritance[100];
+        int i = 0,n = 0,op = 0,j;
+        emp[i] = new Inheritance();
+        emp[i].load();
+        emp[i] = new Inheritance();
+        emp[i].longinbar();
+        emp[i] = new Inheritance();
+        emp[i].schedule();
+        do{
+            Scanner sc = new Scanner(System.in);
+            System.out.println("\n\t[1- INPUT DATA   ]");
+            System.out.println("\t[2- OUTPUT DATA   ]");
+            System.out.println("\t[3- SEARCH DATA   ]");
+            System.out.println("\t[4- UPDATE DATA   ]");
+            System.out.println("\t[5- SORT DATA     ]");
+            System.out.println("\t[6- ADD DATA      ]");
+            System.out.println("\t[7- CHANG POSITION]");
+            System.out.println("\t[8- CHANG E-TIME  ]");
+            System.out.println("\t[9- CHANG S-TIME  ]");
+            System.out.println("\t[10-CHANG DAY     ]");
+            System.out.print("\tPlz select one option : ");op=sc.nextInt();
+            switch(op)
+            {
+                case 1 -> {
+                    System.out.print("Enter Number Of Employee : ");n=sc.nextInt();
+                    for(i=0;i<n;i++)
+                    {
+                        emp[i] = new Inheritance();
+                        emp[i].input();
+                    }    
+                }
+                case 2 -> {
+                    emp[i].Header();
+                    for(i=0;i<n;i++)
+                    {
+                        emp[i].ouptut();
+                    } 
+                }
+                case 3 -> {
+                    String s_name;
+                    int b=0;
+                    System.out.println("Enter Name by search : ");s_name=sc.next();
+                    for(i=0;i<n;i++)
+                    {
+                        if(s_name.equalsIgnoreCase(emp[i].getName()))
+                        {
+                            emp[i].Header();
+                            emp[i].ouptut();
+                            b=1;
+                        }
+                    }
+                    if(b==0)
+                    {
+                        System.err.println("Search not found......!!!");
+                    }
+                    else
+                    {
+                        System.out.println("Search found....");
+                    }
+                }
+                case 4 -> {
+                    String u_name;
+                    int b=0;
+                    System.out.println("Enter name's to search for update : ");u_name=sc.next();
+                    for(i=0;i<n;i++)
+                    {
+                        if(u_name.equalsIgnoreCase(emp[i].getName()))
+                        {
+                            emp[i].input();
+                            b=1;
+                        }
+                    }
+                    if(b==0)
+                    {
+                        System.err.println("Error Update not success.!!!!");
+                    }
+                    else
+                    {
+                        System.out.println("Update successfully.....");
+                    }
+                }
+                case 5 -> {
+                    int b=0;
+                    Inheritance temp = new Inheritance();
+                    for(i=0;i<n;i++)
+                    {
+                        for(j=i+1;j<n;j++)
+                        {
+                            if(emp[i].getCode()>emp[j].getCode())
+                            {
+                                temp = emp[i];
+                                emp[i] = emp[j];
+                                emp[j] = temp;
+                                b=1;
+                            }
+                        }
+                    }
+                    if(b==0)
+                    {
+                        System.err.println("Error sort...!!!");
+                    }
+                    else
+                    {
+                        System.err.println("Sort successful.....");
+                    }
+                }
+                case 6 -> {
+                    int add;
+                    int b=0;
+                    System.out.println("Add Employee : ");add = sc.nextInt();
+                    for(i=n;i<n+add;i++)
+                    {
+                        emp[i] = new Inheritance();
+                        emp[i].input();
+                        b=1;
+                    }
+                    n=n+add;
+                    if(b==0)
+                    {
+                        System.err.println("Error Add Employee.!!");
+                    }
+                    else
+                    {
+                        System.out.println("Add Employee successful....");
+                    }
+                }
+                case 7 -> {
+                    String s_name;
+                    String position;
+                    int b=0;
+                    System.out.println("Enter Name By Search :");s_name=sc.next();
+                    for(i=0;i<n;i++)
+                    {
+                        if(s_name.equalsIgnoreCase(emp[i].getName()))
+                        {
+                            System.out.println("Enter new position : ");position = sc.next();
+                            emp[i].setPosition(position);
+                            b=1;
+                        }
+                    }
+                    if(b==0)
+                    {
+                        System.err.println("Error Chang!!");
+                    }
+                    else
+                    {
+                        System.out.println("Chang successful...");
+                    }
+                }
+                case 8 -> {
+                    String s_name;
+                    int e_time;
+                    int b=0;
+                    System.out.println("Enter Name By Search :");s_name=sc.next();
+                    for(i=0;i<n;i++)
+                    {
+                        if(s_name.equalsIgnoreCase(emp[i].getName()))
+                        {
+                            System.out.println("Enter new End time : ");e_time = sc.nextInt();
+                            emp[i].setE_time(e_time);
+                            b=1;
+                        }
+                    }
+                    if(b==0)
+                    {
+                        System.err.println("Error Chang!!");
+                    }
+                    else
+                    {
+                        System.out.println("Chang successful...");
+                    }
+                }
+                case 9 -> {
+                    String s_name;
+                    int s_time;
+                    int b=0;
+                    System.out.println("Enter Name By Search :");s_name=sc.next();
+                    for(i=0;i<n;i++)
+                    {
+                        if(s_name.equalsIgnoreCase(emp[i].getName()))
+                        {
+                            System.out.println("Enter new Start time : ");s_time = sc.nextInt();
+                            emp[i].setS_time(s_time);
+                            b=1;
+                        }
+                    }
+                    if(b==0)
+                    {
+                        System.err.println("Error Chang!!");
+                    }
+                    else
+                    {
+                        System.out.println("Chang successful...");
+                    }
+                }
+                case 10 -> {
+                    String s_name;
+                    String day;
+                    int b=0;
+                    System.out.println("Enter Name By Search :");s_name=sc.next();
+                    for(i=0;i<n;i++)
+                    {
+                        if(s_name.equalsIgnoreCase(emp[i].getName()))
+                        {
+                            System.out.println("Enter new Day : ");day = sc.next();
+                            emp[i].setDay(day);
+                            b=1;
+                        }
+                    }
+                    if(b==0)
+                    {
+                        System.err.println("Error Chang!!");
+                    }
+                    else
+                    {
+                        System.out.println("Chang successful...");
+                    }
+                }
+            }
+        }while(op!=0);
+    }    
+}
